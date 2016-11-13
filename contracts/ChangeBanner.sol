@@ -43,9 +43,16 @@ contract ChangeBanner {
     }
     
     /// return current Banner
-    function getCurrentBanner() returns(string msg){
+    function getCurrentBanner() constant returns(string msg){
         if(voteCount==0)return "Initial Title";
         else return banners[voteCount-1].title;
+    }
+
+    /// return current Banner
+    function changeBannerFreely(string val) public{
+        Banner memory b;
+        b.title = val;
+        banners[voteCount++] = b;
     }
 
     /// check if the new $(title) is "sane"
